@@ -6,14 +6,43 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "",
     methods: ["GET", "POST"],
-    credentials: true
-  }
+    credentials: true,
+  },
 });
 
 app.get("/", (req, res) => {
-  res.send("<h1>Hello from Realtime Socket Chat Server</h1>");
+  res.send(`
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Socket Test</title>
+  </head>
+  <body>
+  <script src="/socket.io/socket.io.js"></script>
+  
+  <h2>Socket Test</h2>
+    <script>
+    
+    const socket = io();
+    
+    socket.on("connect", () => {
+        console.log("Connected:", socket.id);
+    });
+    
+    socket.on("message", (msg)=>{
+        console.log("Received:", msg);
+    });
+    
+    // Console testing ke liye
+    window.socket = socket;
+    
+    </script>
+  
+  </body>
+  </html>
+  `);
 });
 
 io.on("connection", (socket) => {
@@ -26,9 +55,9 @@ io.on("connection", (socket) => {
     socket.leave(roomId);
   });
 
-//   Broadcast to room 
+  //   Broadcast to room
   socket.on("send", (message) => {
-    console.log(message)
+    console.log(message);
     socket.to(message.room).emit("message", message);
   });
 });
