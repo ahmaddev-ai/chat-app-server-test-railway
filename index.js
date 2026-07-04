@@ -51,7 +51,7 @@ io.on("connection", (socket) => {
   // Join a room
   socket.on("join", (roomId) => {
     socket.join(roomId);
-    console.log(socket.id, "joined", room);
+    console.log(socket.id, "joined", roomId);
   });
   socket.on("leave", (roomId) => {
     socket.leave(roomId);
