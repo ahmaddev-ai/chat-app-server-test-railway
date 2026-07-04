@@ -34,7 +34,7 @@ socket.on("message",(msg)=>{
 socket.emit("send",{
     room:"room1",
     text:"Hello Ahmed",
-    username:"Ali"
+    username:"zeeshan"
 });
 ```
 
@@ -43,7 +43,7 @@ socket.emit("send",{
 ```
 socket.emit("send",{
     room:"room1",
-    text:"Hello Ali",
+    text:"Hello Zeeshan Sir",
     username:"ahmad"
 });
 ```
