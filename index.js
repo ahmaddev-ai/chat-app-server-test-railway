@@ -13,8 +13,6 @@ const io = new Server(server, {
 });
 const PORT = process.env.PORT || 5050;
 
-
-
 app.get("/", (req, res) => {
   res.send(`
   <!DOCTYPE html>
@@ -53,6 +51,7 @@ io.on("connection", (socket) => {
   // Join a room
   socket.on("join", (roomId) => {
     socket.join(roomId);
+    console.log(socket.id, "joined", room);
   });
   socket.on("leave", (roomId) => {
     socket.leave(roomId);
