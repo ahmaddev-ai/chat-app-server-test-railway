@@ -11,6 +11,9 @@ const io = new Server(server, {
     credentials: true,
   },
 });
+const PORT = process.env.PORT || 5050;
+
+
 
 app.get("/", (req, res) => {
   res.send(`
@@ -62,6 +65,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(5050, () => {
-  console.log("listening on *:5050");
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
